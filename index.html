@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="index-styles.css" />
+  </head>
+  <body>
+    <button class="to-rates" type="button">
+      Посмотреть текущие курсы валют
+    </button>
+    <div class="wrapper">
+    <div class="calc">
+    <div class="calc-side">
+      <div class="currency">
+        <p class="plaque">Конвертируем из</p>
+        <ul>
+          <li><input class="currency-select button-left" type="button" name="RUR" id="RUR" value="RUR" /></li>
+          <li><input class="currency-select" type="button" name="USD" id="USD" value="USD" /></li>
+          <li><input class="currency-select" type="button" name="EUR" id="EUR" value="EUR" /></li>
+          <li><input class="currency-select" type="button" name="GBP" id="GBP" value="GBP" /></li>
+          <li><input class="currency-select button-right" type="button" name="arrow" id="arrow" value="" /></li>
+        </ul>
+      </div>
+
+      <div class="value">
+        <input class="cost" type="number" id="value" value="5000" />
+        <p class="rateplaque_left"></p>
+      </div>
+    </div>
+    <div class="calc-center">
+      <button class="swap">SWAP</button>
+    </div>
+    <div class="calc-side">
+      <div class="currency">
+        <p class="plaque">Конвертируем в</p>
+        <ul>
+          <li><input class="currency-select button-left" type="button" name="RUR" id="RUR" value="RUR" /></li>
+          <li><input class="currency-select" type="button" name="USD" id="USD" value="USD" /></li>
+          <li><input class="currency-select" type="button" name="EUR" id="EUR" value="EUR" /></li>
+          <li><input class="currency-select" type="button" name="GBP" id="GBP" value="GBP" /></li>
+          <li><input class="currency-select button-right" type="button" name="arrow" id="arrow" value="" /></li>
+        </ul>
+      </div>
+
+      <div class="value">
+        <input class="cost" type="number" id="result" value="55.8931" /> 
+        <p class="rateplaque_right"></p>
+      </div>
+    </div>
+    </div>
+  </div>
+  <script src="/scripts.js"></script>
+  </body>
+</html>
