@@ -48,22 +48,7 @@ let usdr = document.getElementById('USDR');
 let eurr = document.getElementById('EURR');
 let gbpr = document.getElementById('GBPR');
 
-
-rurl.onclick = function () {
-  valuteL = 1;
-  rateleft = valuteL/valuteR;
-  rateright = valuteR/valuteL;
-  rateplaque_left.innerText = rateleft;
-  rateplaque_right.innerText = rateright;
-  let resleft = value.value * rateleft;
-  result.value = resleft.toFixed(2);
-  let resright = result.value * rateright;
-  value.value = resright.toFixed(2);
-
-}
-
-usdl.onclick = function () {
-  valuteL = json.Valute.USD.Value;
+function update() {
   rateleft = valuteL/valuteR;
   rateright = valuteR/valuteL;
   rateplaque_left.innerText = rateleft;
@@ -74,77 +59,33 @@ usdl.onclick = function () {
   value.value = resright.toFixed(2);
 }
 
-eurl.onclick = function () {
-  valuteL = json.Valute.EUR.Value;
-  rateleft = valuteL/valuteR;
-  rateright = valuteR/valuteL;
-  rateplaque_left.innerText = rateleft;
-  rateplaque_right.innerText = rateright;
-  let resleft = value.value * rateleft;
-  result.value = resleft.toFixed(2);
-  let resright = result.value * rateright;
-  value.value = resright.toFixed(2);
+function leftCurrencySelector(currency) {
+  valuteL = currency;
+  update();
 }
 
-gbpl.onclick = function () {
-  valuteL = json.Valute.GBP.Value;
-  rateleft = valuteL/valuteR;
-  rateright = valuteR/valuteL;
-  rateplaque_left.innerText = rateleft;
-  rateplaque_right.innerText = rateright;
-  let resleft = value.value * rateleft;
-  result.value = resleft.toFixed(2);
-  let resright = result.value * rateright;
-  value.value = resright.toFixed(2);
+function rigthCurrencySelector(currency) {
+  valuteR = currency;
+  update();
 }
 
-rurr.onclick = function () {
-  valuteR = 1;
-  rateleft = valuteL/valuteR;
-  rateright = valuteR/valuteL;
-  rateplaque_left.innerText = rateleft;
-  rateplaque_right.innerText = rateright;
-  let resleft = value.value * rateleft;
-  result.value = resleft.toFixed(2);
-  let resright = result.value * rateright;
-  value.value = resright.toFixed(2);
+
+rurl.onclick = function () {leftCurrencySelector(1);}
+
+usdl.onclick = function () {leftCurrencySelector(json.Valute.USD.Value);}
+
+eurl.onclick = function () {leftCurrencySelector(json.Valute.EUR.Value);}
+
+gbpl.onclick = function () {leftCurrencySelector(json.Valute.GBP.Value);}
+
+rurr.onclick = function () {rigthCurrencySelector(1);}
+
+usdr.onclick = function () {rigthCurrencySelector(json.Valute.USD.Value);}
+
+eurr.onclick = function () {rigthCurrencySelector(json.Valute.EUR.Value);}
+
+gbpr.onclick = function () {rigthCurrencySelector(json.Valute.GBP.Value);}
+
 }
 
-usdr.onclick = function () {
-  valuteR = json.Valute.USD.Value;
-  rateleft = valuteL/valuteR;
-  rateright = valuteR/valuteL;
-  rateplaque_left.innerText = rateleft;
-  rateplaque_right.innerText = rateright;
-  let resleft = value.value * rateleft;
-  result.value = resleft.toFixed(2);
-  let resright = result.value * rateright;
-  value.value = resright.toFixed(2);
-}
-
-eurr.onclick = function () {
-  valuteR = json.Valute.EUR.Value;
-  rateleft = valuteL/valuteR;
-  rateright = valuteR/valuteL;
-  rateplaque_left.innerText = rateleft;
-  rateplaque_right.innerText = rateright;
-  let resleft = value.value * rateleft;
-  result.value = resleft.toFixed(2);
-  let resright = result.value * rateright;
-  value.value = resright.toFixed(2);
-}
-
-gbpr.onclick = function () {
-  valuteR = json.Valute.GBP.Value;
-  rateleft = valuteL/valuteR;
-  rateright = valuteR/valuteL;
-  rateplaque_left.innerText = rateleft;
-  rateplaque_right.innerText = rateright;
-  let resleft = value.value * rateleft;
-  result.value = resleft.toFixed(2);
-  let resright = result.value * rateright;
-  value.value = resright.toFixed(2);
-}
-}
-
-f();
+window.onload(f());
