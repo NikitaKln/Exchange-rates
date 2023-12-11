@@ -32,20 +32,40 @@ async function f() {
     for (let i=0; i<5; i++) {
         let headerrow = document.createElement('tr');
         table.append(headerrow);
-        for (let j=i*10; j<((i*10) + 10); j++) {
+        for (let j=i*10; (j<((i*10) + 10))&&(j<currencyArray.length) ; j++) {
             let th = document.createElement('th');
             th.innerText = currencyArray[j].CharCode;
             headerrow.append(th);
         }
         let datarow = document.createElement('tr');
         table.append(datarow);
-        for (let  j=i*10; j<((i*10) + 10); j++) {
+        for (let  j=i*10; (j<((i*10) + 10))&&(j<currencyArray.length) ; j++) {
             let td = document.createElement('td');
             td.innerText = currencyArray[j].Value;
+            td.id = currencyArray[j].CharCode;
             datarow.append(td);
         }
     }
 
+    //генерим кнопки 
+
+    let baseSelector = document.getElementById('table-dropdown-content');
+
+    for (let i=0; i<currencyArray.length; i++) {
+        let button = document.createElement('button');
+        button.innerText = currencyArray[i].CharCode;
+        button.onclick = function () {
+            for (let j=0; j<currencyArray.length; j++) {
+            let td = document.getElementById(currencyArray[j].CharCode);
+            let result = currencyArray[j].Value/currencyArray[i].Value;
+            td.innerText = result.toFixed(4);
+            }
+        }
+        baseSelector.prepend(button);
+    }
+
+
 }
 
-window.onload(f());
+
+window.onload = f();

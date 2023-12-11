@@ -88,4 +88,4 @@ gbpr.onclick = function () {rigthCurrencySelector(json.Valute.GBP.Value);}
 
 }
 
-window.onload(f());
+window.onload = f();
