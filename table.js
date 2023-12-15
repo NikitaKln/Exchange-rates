@@ -25,7 +25,7 @@ async function f() {
     });
 
     
-    //генерим содержимое таблицы из чистого воздуха
+    //генерим содержимое таблицы
 
     let table = document.getElementById('table');
 
@@ -41,7 +41,7 @@ async function f() {
         table.append(datarow);
         for (let  j=i*10; (j<((i*10) + 10))&&(j<currencyArray.length) ; j++) {
             let td = document.createElement('td');
-            td.innerText = currencyArray[j].Value;
+            td.innerText = currencyArray[j].Value.toFixed(4);
             td.id = currencyArray[j].CharCode;
             datarow.append(td);
         }
@@ -61,10 +61,20 @@ async function f() {
             td.innerText = result.toFixed(4);
             }
         }
-        baseSelector.prepend(button);
+        baseSelector.append(button);
     }
 
+    //кнопка рубля
 
+    let rubutton = document.createElement('button');
+    baseSelector.append(rubutton);
+    rubutton.innerText = 'RUR';
+    rubutton.onclick = function () {
+        for (let i=0; i<currencyArray.length; i++) {
+            let td = document.getElementById(currencyArray[i].CharCode);
+            td.innerText = currencyArray[i].Value.toFixed(4);
+        }
+    }
 }
 
 

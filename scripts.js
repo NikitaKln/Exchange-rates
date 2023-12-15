@@ -6,6 +6,26 @@ let url = 'https://www.cbr-xml-daily.ru/daily_json.js';
 let response = await fetch(url);
 let json = await response.json(); // загружаем JSON с курсами с сервера
 
+let currencyArray = [];    //массив валют для сортировки 
+    
+Object.values(json.Valute).forEach(obj => {         
+    currencyArray.push(obj);
+}); 
+
+
+//сортируем в алфавитном порядке
+
+currencyArray.sort(function(a, b) {
+    let firstLetterComparison = a.CharCode[0].localeCompare(b.CharCode[0]);
+
+    if (firstLetterComparison === 0) {
+        return a.CharCode[1].localeCompare(b.CharCode[1]);
+    }
+
+    return firstLetterComparison;
+});
+
+
 let value = document.getElementById("value");
 let result = document.getElementById("result");
 let valuteL = 1;
@@ -64,7 +84,7 @@ function leftCurrencySelector(currency) {
   update();
 }
 
-function rigthCurrencySelector(currency) {
+function rightCurrencySelector(currency) {
   valuteR = currency;
   update();
 }
@@ -78,13 +98,43 @@ eurl.onclick = function () {leftCurrencySelector(json.Valute.EUR.Value);}
 
 gbpl.onclick = function () {leftCurrencySelector(json.Valute.GBP.Value);}
 
-rurr.onclick = function () {rigthCurrencySelector(1);}
+rurr.onclick = function () {rightCurrencySelector(1);}
 
-usdr.onclick = function () {rigthCurrencySelector(json.Valute.USD.Value);}
+usdr.onclick = function () {rightCurrencySelector(json.Valute.USD.Value);}
 
-eurr.onclick = function () {rigthCurrencySelector(json.Valute.EUR.Value);}
+eurr.onclick = function () {rightCurrencySelector(json.Valute.EUR.Value);}
 
-gbpr.onclick = function () {rigthCurrencySelector(json.Valute.GBP.Value);}
+gbpr.onclick = function () {rightCurrencySelector(json.Valute.GBP.Value);}
+
+let othersLeft = document.getElementById('left-dropdown-content');
+
+for (let i=0; i<currencyArray.length; i++) {
+    let button = document.createElement('button');
+    button.innerText = currencyArray[i].CharCode;
+    button.onclick = function () {
+       leftCurrencySelector(currencyArray[i].Value);
+       let arrowl = document.getElementById('arrowl');
+       arrowl.value = currencyArray[i].CharCode;
+    }
+    othersLeft.append(button);
+}
+
+let othersRight = document.getElementById('right-dropdown-content');
+
+for (let i=0; i<currencyArray.length; i++) {
+    let button = document.createElement('button');
+    button.innerText = currencyArray[i].CharCode;
+    button.onclick = function () {
+       rightCurrencySelector(currencyArray[i].Value);
+       let arrowr = document.getElementById('arrowr');
+       arrowr.value = currencyArray[i].CharCode;
+    }
+    othersRight.append(button);
+}
+
+//кнопка SWAP
+
+
 
 }
 
