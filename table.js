@@ -11,6 +11,10 @@ async function f() {
         currencyArray.push(obj);
     }); 
 
+    currencyArray.push({
+        CharCode: 'RUR',
+        Value: 1
+    })
 
     //сортируем в алфавитном порядке
 
@@ -62,18 +66,6 @@ async function f() {
             }
         }
         baseSelector.append(button);
-    }
-
-    //кнопка рубля
-
-    let rubutton = document.createElement('button');
-    baseSelector.append(rubutton);
-    rubutton.innerText = 'RUR';
-    rubutton.onclick = function () {
-        for (let i=0; i<currencyArray.length; i++) {
-            let td = document.getElementById(currencyArray[i].CharCode);
-            td.innerText = currencyArray[i].Value.toFixed(4);
-        }
     }
 }
 

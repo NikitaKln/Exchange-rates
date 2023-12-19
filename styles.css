@@ -144,6 +144,10 @@ background-color: #827272;
 .main-dropdown:hover .main-dropdown-content {
   display: block;
 }
+
+.highlight {
+  background: #827272;
+}
 /*Таблица*/
 
 .table-dropdown-button {

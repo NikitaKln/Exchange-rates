@@ -79,6 +79,7 @@ async function f() {
 
   function leftCurrencySelector(currency) {
     valuteL = currency;
+
     update();
   }
 
@@ -86,6 +87,7 @@ async function f() {
     valuteR = currency;
     update();
   }
+
 
   rurl.onclick = function () {
     leftCurrencySelector(1);
@@ -150,11 +152,37 @@ async function f() {
   let swap = document.getElementById("swap");
 
   swap.onclick = function () {
-   let container = valuteL;
-   valuteL = valuteR;
-   valuteR = container;
-   update();
+  let container = valuteL;
+  valuteL = valuteR;
+  valuteR = container;
+  rateleft = valuteL/valuteR;
+  rateright = valuteR/valuteL;
+  rateplaque_left.innerText = rateleft;
+  rateplaque_right.innerText = rateright;
+  container = value.value;
+  value.value = result.value;
+  result.value = container;
   };
+
+  //подсветка кнопок
+
+  let selectedButton;
+  let leftUl = document.getElementById('leftul');
+
+  leftUl.onclick = function(event) {
+      let target = event.target;
+      // if (target.tagname != 'INPUT') return;
+
+      highlight(target);
+  }
+
+  function highlight(elem) {
+    if(selectedButton) {
+      selectedButton.classList.remove('highlight');
+    }
+    selectedButton = elem;
+    selectedButton.classList.add('highlight');
+  }
 }
 
 window.onload = f();
