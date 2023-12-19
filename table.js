@@ -36,14 +36,14 @@ async function f() {
     for (let i=0; i<5; i++) {
         let headerrow = document.createElement('tr');
         table.append(headerrow);
-        for (let j=i*10; (j<((i*10) + 10))&&(j<currencyArray.length) ; j++) {
+        for (let j=i*11; (j<((i*11) + 11))&&(j<currencyArray.length) ; j++) {
             let th = document.createElement('th');
             th.innerText = currencyArray[j].CharCode;
             headerrow.append(th);
         }
         let datarow = document.createElement('tr');
         table.append(datarow);
-        for (let  j=i*10; (j<((i*10) + 10))&&(j<currencyArray.length) ; j++) {
+        for (let  j=i*11; (j<((i*11) + 11))&&(j<currencyArray.length) ; j++) {
             let td = document.createElement('td');
             td.innerText = currencyArray[j].Value.toFixed(4);
             td.id = currencyArray[j].CharCode;
@@ -54,19 +54,41 @@ async function f() {
     //генерим кнопки 
 
     let baseSelector = document.getElementById('table-dropdown-content');
+    let tableDropdown = document.getElementById('table-dropdown');
 
     for (let i=0; i<currencyArray.length; i++) {
         let button = document.createElement('button');
         button.innerText = currencyArray[i].CharCode;
+        button.className = 'table-dropdown-currency';
         button.onclick = function () {
             for (let j=0; j<currencyArray.length; j++) {
             let td = document.getElementById(currencyArray[j].CharCode);
             let result = currencyArray[j].Value/currencyArray[i].Value;
             td.innerText = result.toFixed(4);
             }
+            tableDropdown.innerText = currencyArray[i].CharCode;
         }
         baseSelector.append(button);
     }
+
+    //подсветка кнопок
+
+    let dropdown = document.getElementById('table-dropdown-content');
+    let selectedButton;
+
+    dropdown.onclick = function(event) {
+        let target = event.target.closest('button');
+        if (!target) return;
+        highlight(target);
+    }
+
+    function highlight(elem) {
+        if(selectedButton) {
+          selectedButton.classList.remove('table-highlight');
+        }
+        selectedButton = elem;
+        selectedButton.classList.add('table-highlight');
+      }
 }
 
 
