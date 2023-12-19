@@ -191,10 +191,13 @@ async function f() {
 
   //подсветка кнопок
 
-  let leftSelectedButton;
-  let rightSelectedButton;
+  let leftSelectedButton = rurl;
+  let rightSelectedButton = usdr;
   let leftUl = document.getElementById('leftul');
   let rightUl = document.getElementById('rightul');
+
+  leftSelectedButton.classList.add('highlight');
+  rightSelectedButton.classList.add('highlight');
 
   leftUl.onclick = function(event) {
       let target = event.target.closest('input');
