@@ -27,7 +27,7 @@ async function f() {
   //калькулятор валют
 
   value.oninput = function () {
-    if (value.value == "") {
+    if (value.value === "") {
       result.value = "";
     } else {
       let res = value.value * rateLeft;
@@ -36,7 +36,7 @@ async function f() {
   };
 
   result.oninput = function () {
-    if (result.value == "") {
+    if (result.value === "") {
       value.value = "";
     } else {
       let res = result.value * rateRight;
@@ -71,7 +71,7 @@ async function f() {
   }
 
   function leftCurrencySelector(currency) {
-    if (currency == 1) {
+    if (currency === 1) {
       valuteL = 1;
       valuteLChar = "RUR";
     } else {
@@ -82,7 +82,7 @@ async function f() {
   }
 
   function rightCurrencySelector(currency) {
-    if (currency == 1) {
+    if (currency === 1) {
       valuteR = 1;
       valuteRChar = "RUR";
     } else {

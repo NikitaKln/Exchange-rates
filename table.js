@@ -20,13 +20,7 @@ async function f() {
   //сортируем в алфавитном порядке
 
   currencyArray.sort(function (a, b) {
-    let firstLetterComparison = a.CharCode[0].localeCompare(b.CharCode[0]);
-
-    if (firstLetterComparison === 0) {
-      return a.CharCode[1].localeCompare(b.CharCode[1]);
-    }
-
-    return firstLetterComparison;
+    return a.CharCode.localeCompare(b.CharCode);
   });
 
   //генерим содержимое таблицы
