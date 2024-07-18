@@ -4,7 +4,7 @@
 
 # Деплой
 
-Проект размещен по ссылке: https://exchange-rates-six.vercel.app/
+Проект размещен по ссылке (только десктоп): https://exchange-rates-six.vercel.app/
 
 # Запуск локально
 
